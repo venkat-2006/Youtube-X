@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from './components/Navbar/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import Video from './pages/Video/Video'
+import Home from './pages/Home/Home'
 
 const App = () => {
   return (
