@@ -66,6 +66,60 @@ const Feed = () => {
                 <h3>Stack-X</h3>
                 <p>1M views &bull; 2 days ago</p>
             </div>
+            <div className='card'>
+                <img src={thumbnail1} alt="" />
+                <h2>Best channel for tips and tricks every web developer should know.</h2>
+                <h3>Stack-X</h3>
+                <p>1M views &bull; 2 days ago</p>
+            </div>
+            <div className='card'>
+                <img src={thumbnail2} alt="" />
+                <h2>Best channel for tips and tricks every web developer should know.</h2>
+                <h3>Stack-X</h3>
+                <p>1M views &bull; 2 days ago</p>
+            </div>
+
+            <div className='card'>
+                <img src={thumbnail3} alt="" />
+                <h2>Best channel for tips and tricks every web developer should know.</h2>
+                <h3>Stack-X</h3>
+                <p>1M views &bull; 2 days ago</p>
+            </div>
+
+            <div className='card'>
+                <img src={thumbnail4} alt="" />
+                <h2>Best channel for tips and tricks every web developer should know.</h2>
+                <h3>Stack-X</h3>
+                <p>1M views &bull; 2 days ago</p>
+            </div>
+
+            <div className='card'>
+                <img src={thumbnail5} alt="" />
+                <h2>Best channel for tips and tricks every web developer should know.</h2>
+                <h3>Stack-X</h3>
+                <p>1M views &bull; 2 days ago</p>
+            </div>
+
+            <div className='card'>
+                <img src={thumbnail6} alt="" />
+                <h2>Best channel for tips and tricks every web developer should know.</h2>
+                <h3>Stack-X</h3>
+                <p>1M views &bull; 2 days ago</p>
+            </div>
+
+            <div className='card'>
+                <img src={thumbnail7} alt="" />
+                <h2>Best channel for tips and tricks every web developer should know.</h2>
+                <h3>Stack-X</h3>
+                <p>1M views &bull; 2 days ago</p>
+            </div>
+
+            <div className='card'>
+                <img src={thumbnail8} alt="" />
+                <h2>Best channel for tips and tricks every web developer should know.</h2>
+                <h3>Stack-X</h3>
+                <p>1M views &bull; 2 days ago</p>
+            </div>
 
 
         </div>
