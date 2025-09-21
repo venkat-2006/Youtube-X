@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './PlayVideo.css'
 import video1 from '../../assets/video.mp4'
 import like from '../../assets/like.png'
@@ -7,100 +7,128 @@ import share from '../../assets/share.png'
 import save from '../../assets/save.png'
 import jack from '../../assets/jack.png'
 import user_profile from '../../assets/user_profile.jpg'
+import { useState } from 'react'
+import { API_KEY, value_converter } from '../../data'
+import moment from 'moment'
 
-const PlayVideo = () => {
-  return (
-    <div className='play-video'>
-        <video src={video1} controls autoPlay muted></video>
-        <h3>Best Youtube Channel For Open Source</h3>
-        <div className="play-video-info">
-            <p>123452 Views &bull; 2 days ago</p>
-            <div>
-                <span><img src={like} alt="" />12500</span>
-                <span><img src={dislike} alt="" />1251</span>
-                <span><img src={share} alt="" />Share</span>
-                <span><img src={save} alt="" />Save</span>
+const PlayVideo = ({ videoId }) => {
+
+
+    const [apiData,setApiData]=useState(null);
+
+    const fetchVideoData=async()=>{
+        //fetching vids data
+        const videoDetails_url= `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
+        await fetch(videoDetails_url).then(response=>response.json()).then(data=>setApiData(data.items[0]));
+
+    }
+    useEffect(()=>{
+        fetchVideoData();
+
+    },[])
+    return (
+        <div className='play-video'>
+            {/* <video src={video1} controls autoPlay muted></video> */}
+            <iframe
+                width="914"
+                height="514"
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                title="2025 Global AI Hackathon Presentations"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+            ></iframe>
+
+            <h3>{apiData?apiData.snippet.title:"Title Here"}</h3>
+            <div className="play-video-info">
+                <p>{apiData?value_converter(apiData.statistics.viewCount):"10k"} Views &bull; {apiData?moment(apiData.snippet.publishedAt).fromNow():""}</p>
+                <div>
+                    <span><img src={like} alt="" />{apiData?value_converter(apiData.statistics.likeCount):111}</span>
+                    <span><img src={dislike} alt="" />1251</span>
+                    <span><img src={share} alt="" />Share</span>
+                    <span><img src={save} alt="" />Save</span>
+                </div>
             </div>
-        </div>
-        <hr />
-        <div className="publisher">
-            <img src={jack} alt="" />
-            <div>
-                <p>Stack-X</p>
-                <span>15M subscribers</span>
-            </div>
-            <button>Subscribe</button>
-        </div>
-        <div className='vid-description'>
-            <p>Channel that gets you into GSoC</p>
-            <p>Subscribe Stack-X for more Open Source tips</p>
             <hr />
-            <h4>1350 comments</h4>
-            <div className='comment'>
-                <img src={user_profile} alt="" />
+            <div className="publisher">
+                <img src={jack} alt="" />
                 <div>
-                    <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
-                    <p>
-                        Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
-                    </p>
-                    <div className="comment-action">
-                        <img src={like} alt="" />
-                        <span>244</span>
-                        <img src={dislike} alt="" />
+                    <p>{apiData?apiData.snippet.channelTitle:""}</p>
+                    <span>15M subscribers</span>
+                </div>
+                <button>Subscribe</button>
+            </div>
+            <div className='vid-description'>
+                <p>{apiData?apiData.snippet.description.slice(0,250):"Description Here"}</p>
+                <hr />
+                <h4>{apiData ?value_converter( apiData.statistics.commentCount) : 111} Comments</h4>
 
+                <div className='comment'>
+                    <img src={user_profile} alt="" />
+                    <div>
+                        <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
+                        <p>
+                            Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
+                        </p>
+                        <div className="comment-action">
+                            <img src={like} alt="" />
+                            <span>244</span>
+                            <img src={dislike} alt="" />
+
+                        </div>
+                    </div>
+                </div>
+                <div className='comment'>
+                    <img src={user_profile} alt="" />
+                    <div>
+                        <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
+                        <p>
+                            Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
+                        </p>
+                        <div className="comment-action">
+                            <img src={like} alt="" />
+                            <span>244</span>
+                            <img src={dislike} alt="" />
+
+                        </div>
+                    </div>
+                </div>
+                <div className='comment'>
+                    <img src={user_profile} alt="" />
+                    <div>
+                        <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
+                        <p>
+                            Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
+                        </p>
+                        <div className="comment-action">
+                            <img src={like} alt="" />
+                            <span>244</span>
+                            <img src={dislike} alt="" />
+
+                        </div>
+                    </div>
+                </div>
+                <div className='comment'>
+                    <img src={user_profile} alt="" />
+                    <div>
+                        <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
+                        <p>
+                            Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
+                        </p>
+                        <div className="comment-action">
+                            <img src={like} alt="" />
+                            <span>244</span>
+                            <img src={dislike} alt="" />
+
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className='comment'>
-                <img src={user_profile} alt="" />
-                <div>
-                    <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
-                    <p>
-                        Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
-                    </p>
-                    <div className="comment-action">
-                        <img src={like} alt="" />
-                        <span>244</span>
-                        <img src={dislike} alt="" />
-                        
-                    </div>
-                </div>
-            </div>
-            <div className='comment'>
-                <img src={user_profile} alt="" />
-                <div>
-                    <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
-                    <p>
-                        Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
-                    </p>
-                    <div className="comment-action">
-                        <img src={like} alt="" />
-                        <span>244</span>
-                        <img src={dislike} alt="" />
-                        
-                    </div>
-                </div>
-            </div>
-            <div className='comment'>
-                <img src={user_profile} alt="" />
-                <div>
-                    <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
-                    <p>
-                        Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
-                    </p>
-                    <div className="comment-action">
-                        <img src={like} alt="" />
-                        <span>244</span>
-                        <img src={dislike} alt="" />
-                        
-                    </div>
-                </div>
-            </div>
+
+
         </div>
-        
-      
-    </div>
-  )
+    )
 }
 
 export default PlayVideo
