@@ -27,7 +27,7 @@ const Feed = ({category}) => {
                 return(
                 <Link to={`video/${item.snippet.categoryId}/${item.id}`} className='card'>
                 <img src={item.snippet.thumbnails.medium.url} alt="" />
-                <h2>Best channel for tips and tricks every web developer should know.</h2>
+                <h2>{item.snippet.title}</h2>
                 <h3>Stack-X</h3>
                 <p>1M views &bull; 2 days ago</p>
             </Link>
