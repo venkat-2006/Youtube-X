@@ -1,7 +1,7 @@
 import React from 'react'
 import './Navbar.css'
 import menu_icon from '../../assets/menu.png'
-import logo from '../../assets/logo.png'
+import logox from '../../assets/logox.png'
 import search_icon from '../../assets/search.png'
 import upload_icon from '../../assets/upload.png'
 import more_icon from '../../assets/more.png'
@@ -14,7 +14,7 @@ const Navbar = ({setSidebar}) => {
         <nav className='flex-div'>
             <div className="nav-left flex-div">
                 <img className='menu-icon' onClick={()=>setSidebar(prev=>!prev)} src={menu_icon} alt="" />
-                <img className='logo' src={logo} alt="" />
+                <img className='logo' src={logox} alt="" />
 
             </div>
             <div className="nav-middle flex-div">
