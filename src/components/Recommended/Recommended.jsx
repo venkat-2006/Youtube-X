@@ -16,7 +16,7 @@ const Recommended = () => {
       <div className="side-video-list">
         <img src={thumbnail1} alt="" />
         <div className='vid-info'>
-            <h4>Channel that gets you into GSoC</h4>
+            <h4>Channel that gets you into GSoC (Open Source)</h4>
             <p>Stack-X</p>
             <p>1.5M Views</p>
         </div>
@@ -24,7 +24,7 @@ const Recommended = () => {
       <div className="side-video-list">
         <img src={thumbnail2} alt="" />
         <div className='vid-info'>
-            <h4>Channel that gets you into GSoC</h4>
+            <h4>Channel that gets you into GSoC (Open Source)</h4>
             <p>Stack-X</p>
             <p>1.5M Views</p>
         </div>
@@ -32,7 +32,7 @@ const Recommended = () => {
       <div className="side-video-list">
         <img src={thumbnail3} alt="" />
         <div className='vid-info'>
-            <h4>Channel that gets you into GSoC</h4>
+            <h4>Channel that gets you into GSoC (Open Source)</h4>
             <p>Stack-X</p>
             <p>1.5M Views</p>
         </div>
@@ -40,7 +40,7 @@ const Recommended = () => {
       <div className="side-video-list">
         <img src={thumbnail4} alt="" />
         <div className='vid-info'>
-            <h4>Channel that gets you into GSoC</h4>
+            <h4>Channel that gets you into GSoC (Open Source)</h4>
             <p>Stack-X</p>
             <p>1.5M Views</p>
         </div>
@@ -48,7 +48,7 @@ const Recommended = () => {
       <div className="side-video-list">
         <img src={thumbnail5} alt="" />
         <div className='vid-info'>
-            <h4>Channel that gets you into GSoC</h4>
+            <h4>Channel that gets you into GSoC (Open Source)</h4>
             <p>Stack-X</p>
             <p>1.5M Views</p>
         </div>
@@ -56,7 +56,7 @@ const Recommended = () => {
       <div className="side-video-list">
         <img src={thumbnail6} alt="" />
         <div className='vid-info'>
-            <h4>Channel that gets you into GSoC</h4>
+            <h4>Channel that gets you into GSoC (Open Source)</h4>
             <p>Stack-X</p>
             <p>1.5M Views</p>
         </div>
@@ -64,7 +64,7 @@ const Recommended = () => {
       <div className="side-video-list">
         <img src={thumbnail7} alt="" />
         <div className='vid-info'>
-            <h4>Channel that gets you into GSoC</h4>
+            <h4>Channel that gets you into GSoC (Open Source)</h4>
             <p>Stack-X</p>
             <p>1.5M Views</p>
         </div>
@@ -72,7 +72,7 @@ const Recommended = () => {
       <div className="side-video-list">
         <img src={thumbnail8} alt="" />
         <div className='vid-info'>
-            <h4>Channel that gets you into GSoC</h4>
+            <h4>Channel that gets you into GSoC (Open Source)</h4>
             <p>Stack-X</p>
             <p>1.5M Views</p>
         </div>
