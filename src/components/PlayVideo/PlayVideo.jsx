@@ -14,18 +14,32 @@ import moment from 'moment'
 const PlayVideo = ({ videoId }) => {
 
 
-    const [apiData,setApiData]=useState(null);
+    const [apiData, setApiData] = useState(null);
+    const [channelData, setChanneldata] = useState(null);
+    const [commentData, setCommentData] = useState([]);
 
-    const fetchVideoData=async()=>{
+    const fetchVideoData = async () => {
         //fetching vids data
-        const videoDetails_url= `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
-        await fetch(videoDetails_url).then(response=>response.json()).then(data=>setApiData(data.items[0]));
+        const videoDetails_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
+        await fetch(videoDetails_url).then(response => response.json()).then(data => setApiData(data.items[0]));
 
     }
-    useEffect(()=>{
+    const fetchOtherData = async () => {
+        ///fetching channel data
+        const channeldata_url = ` https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${apiData.snippet.channelId}&key=${API_KEY}`
+        await fetch(channeldata_url).then(res => res.json()).then(data => setChanneldata(data.items[0]));
+        /// fetching comments data
+        const comment_url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId}&key=${API_KEY}`
+        await fetch(comment_url).then(res => res.json()).then(data => setCommentData(data.items));
+    }
+    useEffect(() => {
         fetchVideoData();
 
-    },[])
+    }, [])
+    useEffect(() => {
+        fetchOtherData();
+
+    }, [apiData])
     return (
         <div className='play-video'>
             {/* <video src={video1} controls autoPlay muted></video> */}
@@ -40,11 +54,11 @@ const PlayVideo = ({ videoId }) => {
                 allowFullScreen
             ></iframe>
 
-            <h3>{apiData?apiData.snippet.title:"Title Here"}</h3>
+            <h3>{apiData ? apiData.snippet.title : "Title Here"}</h3>
             <div className="play-video-info">
-                <p>{apiData?value_converter(apiData.statistics.viewCount):"10k"} Views &bull; {apiData?moment(apiData.snippet.publishedAt).fromNow():""}</p>
+                <p>{apiData ? value_converter(apiData.statistics.viewCount) : "10k"} Views &bull; {apiData ? moment(apiData.snippet.publishedAt).fromNow() : ""}</p>
                 <div>
-                    <span><img src={like} alt="" />{apiData?value_converter(apiData.statistics.likeCount):111}</span>
+                    <span><img src={like} alt="" />{apiData ? value_converter(apiData.statistics.likeCount) : 111}</span>
                     <span><img src={dislike} alt="" />1251</span>
                     <span><img src={share} alt="" />Share</span>
                     <span><img src={save} alt="" />Save</span>
@@ -52,78 +66,40 @@ const PlayVideo = ({ videoId }) => {
             </div>
             <hr />
             <div className="publisher">
-                <img src={jack} alt="" />
+                <img src={channelData ? channelData.snippet.thumbnails.default.url : ""} alt="" />
                 <div>
-                    <p>{apiData?apiData.snippet.channelTitle:""}</p>
-                    <span>15M subscribers</span>
+                    <p>{apiData ? apiData.snippet.channelTitle : ""}</p>
+                    <span>{channelData ? value_converter(channelData.statistics.subscriberCount) : "1M"} subscribers</span>
                 </div>
                 <button>Subscribe</button>
             </div>
+
             <div className='vid-description'>
-                <p>{apiData?apiData.snippet.description.slice(0,250):"Description Here"}</p>
+                <p>{apiData ? apiData.snippet.description.slice(0, 250) : "Description Here"}</p>
                 <hr />
-                <h4>{apiData ?value_converter( apiData.statistics.commentCount) : 111} Comments</h4>
+                <h4>{apiData ? value_converter(apiData.statistics.commentCount) : 111} Comments</h4>
+                {commentData.map((item, index) => {
+                    return (
+                        <div key={index} className='comment'>
+                            <img src={item.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="" />
+                            <div>
+                                <h3>{item.snippet.topLevelComment.snippet.authorDisplayName} <span> 1 day ago</span></h3>
+                                <p>
+                                   {item.snippet.topLevelComment.snippet.textDisplay}
+                                </p>
+                                <div className="comment-action">
+                                    <img src={like} alt="" />
+                                    <span> {value_converter(item.snippet.topLevelComment.snippet.likeCount)}</span>
+                                    <img src={dislike} alt="" />
 
-                <div className='comment'>
-                    <img src={user_profile} alt="" />
-                    <div>
-                        <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
-                        <p>
-                            Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
-                        </p>
-                        <div className="comment-action">
-                            <img src={like} alt="" />
-                            <span>244</span>
-                            <img src={dislike} alt="" />
-
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className='comment'>
-                    <img src={user_profile} alt="" />
-                    <div>
-                        <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
-                        <p>
-                            Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
-                        </p>
-                        <div className="comment-action">
-                            <img src={like} alt="" />
-                            <span>244</span>
-                            <img src={dislike} alt="" />
 
-                        </div>
-                    </div>
-                </div>
-                <div className='comment'>
-                    <img src={user_profile} alt="" />
-                    <div>
-                        <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
-                        <p>
-                            Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
-                        </p>
-                        <div className="comment-action">
-                            <img src={like} alt="" />
-                            <span>244</span>
-                            <img src={dislike} alt="" />
+                    )
 
-                        </div>
-                    </div>
-                </div>
-                <div className='comment'>
-                    <img src={user_profile} alt="" />
-                    <div>
-                        <h3>Jimmy Donaldson <span> 1 day ago</span></h3>
-                        <p>
-                            Huge thanks to Stack-X for creating such a clear and insightful video on open source! Your content makes complex topics easy to understand and inspires developers like me to contribute more. Keep up the amazing work—your efforts truly empower the community!
-                        </p>
-                        <div className="comment-action">
-                            <img src={like} alt="" />
-                            <span>244</span>
-                            <img src={dislike} alt="" />
+                })}
 
-                        </div>
-                    </div>
-                </div>
             </div>
 
 
