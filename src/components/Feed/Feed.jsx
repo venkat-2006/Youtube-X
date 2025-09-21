@@ -9,12 +9,17 @@ import thumbnail6 from '../../assets/thumbnail6.png'
 import thumbnail7 from '../../assets/thumbnail7.png'
 import thumbnail8 from '../../assets/thumbnail8.png'
 import { Link } from 'react-router-dom'
+import { value_converter } from '../../data'
+import { API_KEY } from '../../data'
+import moment from 'moment'
+
+
 
 const Feed = ({category}) => {
     const [data,setData]=useState([]);
 
     const fetchdata=async()=>{
-        const videoList_url=` https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&videoCategoryId=${category}&key=${import.meta.env.VITE_API_KEY}`;
+        const videoList_url=` https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&videoCategoryId=${category}&key=${API_KEY}`;
         await fetch(videoList_url).then(response=>response.json()).then(data=>setData(data.items))
     }
     useEffect(()=>{
@@ -25,11 +30,11 @@ const Feed = ({category}) => {
         <div className="feed">
             {data.map((item,index)=>{
                 return(
-                <Link to={`video/${item.snippet.categoryId}/${item.id}`} className='card'>
+                <Link /*key={item.id}*/ to={`video/${item.snippet.categoryId}/${item.id}`} className='card'>
                 <img src={item.snippet.thumbnails.medium.url} alt="" />
                 <h2>{item.snippet.title}</h2>
-                <h3>Stack-X</h3>
-                <p>1M views &bull; 2 days ago</p>
+                <h3>{item.snippet.channelTitle}</h3>
+                <p>{value_converter(item.statistics.viewCount)} views &bull; {moment(item.snippet.publishedAt).fromNow()}</p>
             </Link>
 
                 )
