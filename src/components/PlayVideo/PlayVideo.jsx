@@ -10,8 +10,13 @@ import user_profile from '../../assets/user_profile.jpg'
 import { useState } from 'react'
 import { API_KEY, value_converter } from '../../data'
 import moment from 'moment'
+import { useParams } from 'react-router-dom'
 
-const PlayVideo = ({ videoId }) => {
+const PlayVideo = () => {
+
+    const {videoId}=useParams();
+
+
 
 
     const [apiData, setApiData] = useState(null);
@@ -35,7 +40,7 @@ const PlayVideo = ({ videoId }) => {
     useEffect(() => {
         fetchVideoData();
 
-    }, [])
+    }, [videoId])
     useEffect(() => {
         fetchOtherData();
 
