@@ -21,7 +21,7 @@ nav.dark {
 }
 
 .nav-left .logo {
-    width: 160px;
+    width: 200px; /* increased size */
     transition: all 0.3s ease;
 }
 
@@ -90,7 +90,7 @@ nav.dark .toggle {
         width: 30px;
     }
     .logo {
-        width: 100px;
+        width: 140px; /* increased size for smaller screens */
     }
     .nav-middle .search-box input {
         width: 120px;
