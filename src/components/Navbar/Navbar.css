@@ -1,4 +1,4 @@
-nav{
+nav {
     padding: 10px 2%;
     justify-content: space-between;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -6,60 +6,93 @@ nav{
     position: sticky;
     top: 0;
     z-index: 10;
-
+    transition: background 0.3s ease, color 0.3s ease;
 }
-.nav-left .menu-icon{
+
+nav.dark {
+    background: #1e1e1e;
+    color: white;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.nav-left .menu-icon {
     width: 22px;
     margin-right: 25px;
-
 }
-.nav-left .logo{
-    width:160px;
+
+.nav-left .logo {
+    width: 160px;
+    transition: all 0.3s ease;
 }
 
 .nav-middle .search-box {
-  border: 1px solid #ccc;
-  margin-right: 15px;
-  padding: 6px 10px;   
-  border-radius: 25px;
-  font-size: 14px;    
+    border: 1px solid #ccc;
+    margin-right: 15px;
+    padding: 6px 10px;
+    border-radius: 25px;
+    font-size: 14px;
+    transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
-.nav-middle .search-box input{
+.nav-middle .search-box input {
     width: 400px;
-    border:0;
-    outline:0;
-    background:transparent;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    transition: color 0.3s ease, background 0.3s ease;
 }
-.nav-middle .search-box img{
-    width:15px;
-     
-}
-.nav-right img{
-    width:25px;
-    margin-right:25px;
 
+.nav-middle .search-box img {
+    width: 15px;
 }
-.nav-right .user-icon{
+
+.nav-right img {
+    width: 25px;
+    margin-right: 25px;
+    transition: filter 0.3s ease;
+}
+
+.nav-right .user-icon {
     width: 35px;
     border-radius: 50%;
 }
-@media (max-width:900px){
-    .menu-icon{
+
+nav.dark .search-box {
+    border-color: #555;
+    background-color: #2a2a2a;
+}
+
+nav.dark .search-box input {
+    color: white;
+}
+
+nav.dark .nav-right img:not(.user-icon):not(.toggle) {
+    filter: brightness(0) invert(1);
+}
+
+nav.dark .toggle {
+    filter: brightness(1) invert(0); /* keep toggle icon visible */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .menu-icon {
         display: none;
     }
-    .nav-right img{
+    .nav-right img {
         display: none;
     }
-    .nav-right .user-icon{
+    .nav-right .user-icon {
         display: block;
         width: 30px;
     }
-    .logo{
-        width: 10px;
+    .logo {
+        width: 100px;
     }
-    .nav-middle .search-box input{
+    .nav-middle .search-box input {
         width: 120px;
-
     }
 }

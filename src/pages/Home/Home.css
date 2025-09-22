@@ -1,15 +1,26 @@
-.container{
-    background:#f9f9f9;
+.container {
+    background: #f9f9f9;
     padding-left: 17%;
     padding-right: 2%;
     padding-top: 20px;
-
     padding-bottom: 20px;
-
+    transition: background 0.3s ease, color 0.3s ease;
 }
-.large-container{
+
+.large-container {
     padding-left: 7%;
 }
+
+.home-page.dark .container {
+    background: #121212;
+    color: white;
+}
+
+.home-page.dark .large-container {
+    background: #121212;
+    color: white;
+}
+
 @media (max-width: 900px) {
     .large-container,
     .container {
