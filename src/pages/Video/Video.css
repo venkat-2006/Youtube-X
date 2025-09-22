@@ -7,7 +7,14 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    transition: background 0.3s ease, color 0.3s ease;
 }
+
+.play-container.dark {
+    background: #1e1e1e;
+    color: #fff;
+}
+
 @media (max-width:900px){
     .play-container{
         padding-left: 5%;
