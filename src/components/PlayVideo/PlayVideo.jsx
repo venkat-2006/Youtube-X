@@ -129,7 +129,11 @@ const PlayVideo = ({ isDarkMode }) => {   // <-- add isDarkMode here
                 {item.snippet.topLevelComment.snippet.authorDisplayName}
                 <span> • {moment(item.snippet.topLevelComment.snippet.publishedAt).fromNow()}</span>
               </h3>
-              <p>{item.snippet.topLevelComment.snippet.textDisplay}</p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: item.snippet.topLevelComment.snippet.textDisplay,
+                }}
+              />
               <div className="comment-action">
                 <img src={like} alt="" />
                 <span>{value_converter(item.snippet.topLevelComment.snippet.likeCount)}</span>
