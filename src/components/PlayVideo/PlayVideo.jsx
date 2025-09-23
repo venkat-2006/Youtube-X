@@ -15,6 +15,7 @@ const PlayVideo = ({ isDarkMode }) => {   // <-- add isDarkMode here
   const [channelData, setChanneldata] = useState(null)
   const [commentData, setCommentData] = useState([])
   const [loading, setLoading] = useState(true)
+  const [subscribed, setSubscribed] = useState(false);
 
   const fetchVideoData = async () => {
     try {
@@ -110,7 +111,14 @@ const PlayVideo = ({ isDarkMode }) => {   // <-- add isDarkMode here
             {channelData ? value_converter(channelData.statistics.subscriberCount) : '1M'} subscribers
           </span>
         </div>
-        <button>Subscribe</button>
+        <button
+          onClick={() => {
+            setSubscribed(prev => !prev);
+          }}
+        >
+          {subscribed ? "Subscribed 🔔" : "Subscribe"}
+        </button>
+
       </div>
 
       <div className="vid-description">
