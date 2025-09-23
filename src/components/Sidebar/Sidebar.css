@@ -5,7 +5,7 @@
     position: fixed;
     top: 0;
     padding-left: 2%;
-    padding-top: 80px;
+    padding-top: 90px;
     transition: background 0.3s ease, color 0.3s ease;
 }
 
@@ -52,6 +52,7 @@
 
 .sidebar.dark hr {
     background: #444;
+    
 }
 
 .subscribed-list h3 {
@@ -72,6 +73,8 @@
 
 .small-sidebar {
     width: 5%;
+   
+
 }
 
 .small-sidebar p {
